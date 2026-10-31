@@ -146,8 +146,8 @@ Example for local development:
 
 ```env
 APP_ENV=development
-ADMIN_EMAIL=admin@vinedu.com
-ADMIN_PASSWORD=ApnaStrongPassword123!
+ADMIN_EMAIL=your_admin_email@example.com
+ADMIN_PASSWORD=your_strong_local_password
 ```
 
 Use your own credentials. Never commit the `.env` file or publish real passwords.
