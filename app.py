@@ -127,11 +127,24 @@ def provision_admin():
     if len(password) < minimum:
         raise RuntimeError(f"Admin password must have at least {minimum} characters.")
     name = os.getenv("ADMIN_NAME", "Vinedu Administrator").strip()[:80]
+    # Keep the configured Render admin password synchronized with the database.
+    # Existing student accounts are never promoted to admin by this upsert.
     with pool.connection() as conn:
         conn.execute("""
-            INSERT INTO users(email,display_name,password_hash,role) VALUES(%s,%s,%s,'admin')
-            ON CONFLICT(email) DO NOTHING
+            INSERT INTO users(email,display_name,password_hash,role)
+            VALUES(%s,%s,%s,'admin')
+            ON CONFLICT(email) DO UPDATE SET
+                display_name=EXCLUDED.display_name,
+                password_hash=EXCLUDED.password_hash,
+                updated_at=CURRENT_TIMESTAMP
+            WHERE users.role='admin'
         """, (email, name, hash_password(password)))
+        account = conn.execute("SELECT role FROM users WHERE email=%s", (email,)).fetchone()
+        if not account or account["role"] != "admin":
+            raise RuntimeError(
+                "ADMIN_EMAIL is already assigned to a non-admin account. "
+                "Set ADMIN_EMAIL to a separate administrator email."
+            )
 
 
 def api_body():
