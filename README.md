@@ -7,7 +7,15 @@ Vinedu LMS is a web-based Learning Management System designed to provide student
 🔗 **Live Demo:** https://vinedu-lms-1.onrender.com
 
 ---
+## 🔐 Admin Login Credentials
 
+| Field | Details |
+|---|---|
+| **Admin ID (Email)** | `admin@vinedu.com` |
+| **Admin Password** | `ApnaStrongPassword123!` |
+| **Live Website** | https://vinedu-lms-1.onrender.com |
+
+> **Note:** These credentials will work only if the same email and password are configured in Render and the admin account exists in the database.
 ## 🚀 Project Overview
 
 Vinedu LMS brings learning activities and administrative management together in one platform. It features a web interface, user authentication, persistent learning data, and administrative tools to manage courses and students.
