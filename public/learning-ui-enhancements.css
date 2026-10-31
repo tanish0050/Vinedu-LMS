@@ -1,0 +1,26 @@
+/* Vinedu learning dashboard refinements */
+:root {
+  --vinedu-ink: #173b32;
+  --vinedu-muted: #667b73;
+  --vinedu-green: #237b60;
+  --vinedu-soft: #f4f8f5;
+}
+
+body {
+  color: var(--vinedu-ink);
+  background: var(--vinedu-soft);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+button, input, select, textarea { font: inherit; }
+
+:focus-visible {
+  outline: 3px solid #77b99d;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  body { font-size: 14px; }
+}
